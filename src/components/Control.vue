@@ -1,11 +1,11 @@
 <template>
-  <div class="row">
-    {{ weapon }}
+  <div class="row mb-4">
     <div class="col">{{ weapon.name }}</div>
     <div class="col">
       <div class="progress">
         <div
           class="progress-bar"
+          :class="{ 'bg-danger': weapon.level <= warning_level }"
           role="progressbar"
           aria-valuenow="0"
           aria-valuemin="0"
@@ -15,7 +15,8 @@
       </div>
     </div>
     <div class="col">
-      <button @click="fire" type="button">FIRE</button>
+      <button @click="fire(1)" type="button">FIRE</button>
+      <button @click="fire(10)" type="button">SUPER</button>
     </div>
   </div>
 </template>
@@ -26,10 +27,19 @@ export default {
   props: {
     weapon: Object
   },
+  data: function() {
+    return {
+      warning_level: 25
+    };
+  },
   methods: {
-    fire: function() {
+    fire: function(power) {
+      if (typeof power === "undefined") {
+        power = 1;
+      }
       console.log("fire");
-      this.weapon -= 1;
+      console.log(power);
+      this.weapon.level -= power;
     }
   }
 };

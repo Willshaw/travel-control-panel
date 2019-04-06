@@ -2,7 +2,11 @@
   <div id="app" class="container">
     <div class="row">
       <div class="col">
-        <Control weapon="weapon" v-for="weapon in weapons" :key="weapon.name" />
+        <Control
+          :weapon="weapon"
+          v-for="weapon in weapons"
+          :key="weapon.name"
+        />
       </div>
       <div class="col">
         <div class="row">
