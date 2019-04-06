@@ -65,7 +65,7 @@ export default {
       if (typeof power === "undefined") {
         power = 1;
       }
-      this.weapon.level -= power;
+      this.weapon.level = Math.max(0, this.weapon.level - power);
     },
     rechargePower: function() {
       // if we need power, ask for it from parent

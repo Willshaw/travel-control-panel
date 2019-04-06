@@ -123,7 +123,7 @@ export default {
         }
         // if we are not charged yet, increase charge
         self.power_level++;
-      }, 100);
+      }, 50);
     },
     rechargeControl: function(deficit) {
       // take deficit from power level,
