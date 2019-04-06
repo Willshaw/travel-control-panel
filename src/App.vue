@@ -7,6 +7,7 @@
           v-for="weapon in weapons"
           :key="weapon.name"
           :disabled="!panel_on"
+          :recharge="rechargeControl"
         />
         <div class="row mb-2">
           <div class="col">
@@ -111,6 +112,19 @@ export default {
       this.power_level = 100;
       // turn panel on
       this.panel_on = true;
+    },
+    rechargeControl: function(deficit) {
+      // take deficit from power level,
+      // making sure we don't go below 0
+      if (this.power_level >= deficit) {
+        this.power_level -= deficit;
+        return deficit;
+      }
+
+      // if we can't return it all, return what we can
+      var all_that_we_have = this.power_level;
+      this.power_level = 0;
+      return all_that_we_have;
     }
   }
 };

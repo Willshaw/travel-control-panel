@@ -38,7 +38,7 @@
       <button
         class="btn btn-warning"
         :disabled="disabled"
-        @click="recharge"
+        @click="rechargePower"
         type="button"
       >
         Recharge
@@ -52,7 +52,8 @@ export default {
   name: "Control",
   props: {
     weapon: Object,
-    disabled: Boolean
+    disabled: Boolean,
+    recharge: Function
   },
   data: function() {
     return {
@@ -66,8 +67,13 @@ export default {
       }
       this.weapon.level -= power;
     },
-    recharge: function() {
-      console.log("charge");
+    rechargePower: function() {
+      // if we need power, ask for it from parent
+      var deficit = 100 - this.weapon.level;
+      console.log("d " + deficit);
+      if (deficit) {
+        this.weapon.level += this.recharge(deficit);
+      }
     }
   }
 };
