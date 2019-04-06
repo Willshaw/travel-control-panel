@@ -106,12 +106,22 @@ export default {
       this.panel_on = false;
     },
     recharge: function() {
+      var self = this;
       // turn panel off
       this.panel_on = false;
       // recharge batteries
-      this.power_level = 100;
-      // turn panel on
-      this.panel_on = true;
+      var interval = setInterval(function() {
+        console.log("charge");
+        // if we are charged we can exit
+        if (self.power_level >= 100) {
+          clearInterval(interval);
+          // turn panel on
+          self.panel_on = true;
+          return;
+        }
+        // if we are not charged yet, increase charge
+        self.power_level++;
+      }, 100);
     },
     rechargeControl: function(deficit) {
       // take deficit from power level,
