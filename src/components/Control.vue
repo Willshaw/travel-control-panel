@@ -15,9 +15,33 @@
       </div>
     </div>
     <div class="col">
-      <button :disabled="disabled" @click="fire(1)" type="button">FIRE</button>
-      <button :disabled="disabled" @click="fire(10)" type="button">
+      <button
+        class="btn btn-danger"
+        :disabled="disabled"
+        @click="fire(1)"
+        type="button"
+      >
+        FIRE
+      </button>
+    </div>
+    <div class="col">
+      <button
+        class="btn btn-danger"
+        :disabled="disabled"
+        @click="fire(10)"
+        type="button"
+      >
         SUPER
+      </button>
+    </div>
+    <div class="col">
+      <button
+        class="btn btn-warning"
+        :disabled="disabled"
+        @click="recharge"
+        type="button"
+      >
+        Recharge
       </button>
     </div>
   </div>
@@ -41,6 +65,9 @@ export default {
         power = 1;
       }
       this.weapon.level -= power;
+    },
+    recharge: function() {
+      console.log("charge");
     }
   }
 };

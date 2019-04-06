@@ -56,7 +56,7 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <!--<div class="col">
         <div class="row">
           <div class="col">radar</div>
         </div>
@@ -65,7 +65,7 @@
             {{ graph }}
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
