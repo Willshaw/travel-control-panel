@@ -16,6 +16,7 @@
                 type="button"
                 @click="on"
                 class="btn btn-success"
+                :disabled="charging"
                 :class="{ active: panel_on, faded: !panel_on }"
               >
                 On
@@ -107,15 +108,16 @@ export default {
     },
     recharge: function() {
       var self = this;
+      this.charging = true;
       // turn panel off
       this.panel_on = false;
       // recharge batteries
       var interval = setInterval(function() {
-        console.log("charge");
         // if we are charged we can exit
         if (self.power_level >= 100) {
           clearInterval(interval);
           // turn panel on
+          self.charging = false;
           self.panel_on = true;
           return;
         }
