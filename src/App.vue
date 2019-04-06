@@ -6,7 +6,55 @@
           :weapon="weapon"
           v-for="weapon in weapons"
           :key="weapon.name"
+          :disabled="!panel_on"
         />
+        <div class="row mb-2">
+          <div class="col">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button
+                type="button"
+                @click="on"
+                class="btn btn-success"
+                :class="{ active: panel_on, faded: !panel_on }"
+              >
+                On
+              </button>
+              <button
+                type="button"
+                @click="off"
+                class="btn btn-danger"
+                :class="{ active: !panel_on, faded: panel_on }"
+              >
+                Off
+              </button>
+            </div>
+          </div>
+          <div class="col">
+            <button
+              type="button"
+              @click="recharge"
+              class="btn btn-warning"
+              :disabled="!panel_on"
+            >
+              Recharge
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="progress">
+              <div
+                class="progress-bar bg-success"
+                :class="{ 'bg-danger': power_level <= warning_level }"
+                role="progressbar"
+                aria-valuenow="0"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                :style="'width:' + power_level + '%'"
+              ></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col">
         <div class="row">
@@ -42,8 +90,28 @@ export default {
   data: function() {
     return {
       graphs: ["red", "blue"],
-      weapons: []
+      weapons: [],
+      panel_on: false,
+      power_level: 0,
+      charging: false,
+      warning_level: 25
     };
+  },
+  methods: {
+    on: function() {
+      this.panel_on = true;
+    },
+    off: function() {
+      this.panel_on = false;
+    },
+    recharge: function() {
+      // turn panel off
+      this.panel_on = false;
+      // recharge batteries
+      this.power_level = 100;
+      // turn panel on
+      this.panel_on = true;
+    }
   }
 };
 </script>
@@ -56,5 +124,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.faded {
+  opacity: 0.5;
 }
 </style>

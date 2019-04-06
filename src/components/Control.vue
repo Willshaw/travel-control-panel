@@ -15,8 +15,10 @@
       </div>
     </div>
     <div class="col">
-      <button @click="fire(1)" type="button">FIRE</button>
-      <button @click="fire(10)" type="button">SUPER</button>
+      <button :disabled="disabled" @click="fire(1)" type="button">FIRE</button>
+      <button :disabled="disabled" @click="fire(10)" type="button">
+        SUPER
+      </button>
     </div>
   </div>
 </template>
@@ -25,7 +27,8 @@
 export default {
   name: "Control",
   props: {
-    weapon: Object
+    weapon: Object,
+    disabled: Boolean
   },
   data: function() {
     return {
@@ -37,8 +40,6 @@ export default {
       if (typeof power === "undefined") {
         power = 1;
       }
-      console.log("fire");
-      console.log(power);
       this.weapon.level -= power;
     }
   }
