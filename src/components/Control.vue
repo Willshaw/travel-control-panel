@@ -1,7 +1,7 @@
 <template>
-  <div class="row mb-4">
-    <div class="col">{{ weapon.name }}</div>
-    <div class="col">
+  <div class="row mb-2 pb-2 border-bottom">
+    <div class="col-sm">{{ weapon.name }}</div>
+    <div class="col-sm mb-2">
       <div class="progress">
         <div
           class="progress-bar"
@@ -15,24 +15,10 @@
       </div>
     </div>
     <div class="col">
-      <button
-        class="btn btn-danger"
-        :disabled="disabled"
-        @click="fire(1)"
-        type="button"
-      >
-        FIRE
-      </button>
+      <button class="btn btn-danger" :disabled="disabled" @click="fire(1)" type="button">FIRE</button>
     </div>
     <div class="col">
-      <button
-        class="btn btn-danger"
-        :disabled="disabled"
-        @click="fire(10)"
-        type="button"
-      >
-        SUPER
-      </button>
+      <button class="btn btn-danger" :disabled="disabled" @click="fire(10)" type="button">SUPER</button>
     </div>
     <div class="col">
       <button
@@ -40,9 +26,7 @@
         :disabled="disabled"
         @click="rechargePower"
         type="button"
-      >
-        Recharge
-      </button>
+      >Recharge</button>
     </div>
   </div>
 </template>
