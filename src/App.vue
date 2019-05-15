@@ -138,7 +138,7 @@ export default {
       // recharge batteries
       var interval = setInterval(function() {
         // if we are charged we can exit
-        if (self.power_level >= this.max_power) {
+        if (self.power_level >= self.max_power) {
           clearInterval(interval);
           // turn panel on
           self.charging = false;
@@ -147,7 +147,7 @@ export default {
         }
         // if we are not charged yet, increase charge
         self.power_level++;
-      }, 50);
+      }, 25);
     },
     rechargeControl: function(deficit) {
       // take deficit from power level,
