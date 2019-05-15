@@ -1,4 +1,5 @@
 {
-  "name": "Travel Control Panel",
-  "short_name": "CTP"
+  "name": "Weapons Control Panel",
+  "short_name": "WC Panel",
+  "display": "standalone"
 }

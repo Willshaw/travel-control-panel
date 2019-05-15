@@ -152,13 +152,8 @@ export default {
     rechargeControl: function(deficit) {
       // take deficit from power level,
       // making sure we don't go below 0
-
-      console.log("recharging: ", deficit);
-      console.log("current power: ", this.power_level);
-
       if (this.power_level >= deficit) {
         this.power_level -= deficit;
-        console.log("return charge and set new power", this.power_level);
         return deficit;
       }
 

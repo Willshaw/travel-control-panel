@@ -72,7 +72,6 @@ export default {
     rechargePower: function() {
       // if we need power, ask for it from parent
       var deficit = 100 - this.weapon.level;
-      console.log("d " + deficit);
       if (deficit) {
         this.weapon.level += this.recharge(deficit);
       }
