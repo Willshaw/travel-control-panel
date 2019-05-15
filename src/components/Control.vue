@@ -1,7 +1,7 @@
 <template>
   <div class="row mb-2 pb-2 border-bottom">
-    <div class="col-sm">{{ weapon.name }}</div>
-    <div class="col-sm mb-2">
+    <div class="col-sm weapon-name">{{ weapon.name }}</div>
+    <div class="col-sm">
       <div class="progress">
         <div
           class="progress-bar"
@@ -26,10 +26,28 @@
         :disabled="disabled"
         @click="rechargePower"
         type="button"
-      >Recharge</button>
+      >Charge</button>
     </div>
   </div>
 </template>
+
+<style scoped>
+.weapon-name {
+  text-transform: capitalize;
+}
+
+@media (max-width: 575px) {
+  .progress {
+    margin-bottom: 1em;
+  }
+}
+
+@media (min-width: 576px) {
+  .progress {
+    height: 100%;
+  }
+}
+</style>
 
 <script>
 export default {
@@ -62,6 +80,3 @@ export default {
   }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>

@@ -1,5 +1,10 @@
 <template>
-  <div id="app" class="container">
+  <div id="app" class="control-panel container">
+    <div class="row">
+      <div class="col">
+        <h1 class="mt-2 pb-2 mb-2 border-bottom">Weapons Control Panel</h1>
+      </div>
+    </div>
     <div class="row">
       <div class="col">
         <Control
@@ -9,6 +14,11 @@
           :disabled="!panel_on"
           :recharge="rechargeControl"
         />
+        <div class="row mb-2">
+          <div class="col">
+            <h2>Main Battery</h2>
+          </div>
+        </div>
         <div class="row mb-2">
           <div class="col">
             <div class="btn-group" role="group" aria-label="Panel On/Off">
@@ -33,7 +43,7 @@
               @click="recharge"
               class="btn btn-warning"
               :disabled="!panel_on"
-            >Recharge</button>
+            >Charge</button>
           </div>
         </div>
         <div class="row">
@@ -55,6 +65,27 @@
     </div>
   </div>
 </template>
+
+
+<style>
+html,
+body {
+  background-color: #111;
+  color: #EEE;
+}
+
+.control-panel {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+
+.faded {
+  opacity: 0.5;
+}
+</style>
+
 
 <script>
 import Control from "./components/Control";
@@ -139,18 +170,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-.faded {
-  opacity: 0.5;
-}
-</style>
