@@ -11,24 +11,20 @@
         />
         <div class="row mb-2">
           <div class="col">
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn-group" role="group" aria-label="Panel On/Off">
               <button
                 type="button"
                 @click="on"
                 class="btn btn-success"
                 :disabled="charging"
                 :class="{ active: panel_on, faded: !panel_on }"
-              >
-                On
-              </button>
+              >On</button>
               <button
                 type="button"
                 @click="off"
                 class="btn btn-danger"
                 :class="{ active: !panel_on, faded: panel_on }"
-              >
-                Off
-              </button>
+              >Off</button>
             </div>
           </div>
           <div class="col">
@@ -37,9 +33,7 @@
               @click="recharge"
               class="btn btn-warning"
               :disabled="!panel_on"
-            >
-              Recharge
-            </button>
+            >Recharge</button>
           </div>
         </div>
         <div class="row">
@@ -52,22 +46,12 @@
                 aria-valuenow="0"
                 aria-valuemin="0"
                 aria-valuemax="100"
-                :style="'width:' + power_level + '%'"
+                :style="power_level_style"
               ></div>
             </div>
           </div>
         </div>
       </div>
-      <!--<div class="col">
-        <div class="row">
-          <div class="col">radar</div>
-        </div>
-        <div class="row" v-for="graph in graphs">
-          <div class="col">
-            {{ graph }}
-          </div>
-        </div>
-      </div>-->
     </div>
   </div>
 </template>
@@ -88,16 +72,25 @@ export default {
         level: 100
       });
     });
+
+    this.power_level = this.max_power;
   },
   data: function() {
     return {
-      graphs: ["red", "blue"],
       weapons: [],
       panel_on: false,
       power_level: 0,
       charging: false,
       warning_level: 25
     };
+  },
+  computed: {
+    max_power: function() {
+      return this.weapons.length * 100;
+    },
+    power_level_style: function() {
+      return "width:" + (this.power_level / this.max_power) * 100 + "%";
+    }
   },
   methods: {
     on: function() {
@@ -114,7 +107,7 @@ export default {
       // recharge batteries
       var interval = setInterval(function() {
         // if we are charged we can exit
-        if (self.power_level >= 100) {
+        if (self.power_level >= this.max_power) {
           clearInterval(interval);
           // turn panel on
           self.charging = false;
@@ -128,8 +121,13 @@ export default {
     rechargeControl: function(deficit) {
       // take deficit from power level,
       // making sure we don't go below 0
+
+      console.log("recharging: ", deficit);
+      console.log("current power: ", this.power_level);
+
       if (this.power_level >= deficit) {
         this.power_level -= deficit;
+        console.log("return charge and set new power", this.power_level);
         return deficit;
       }
 
