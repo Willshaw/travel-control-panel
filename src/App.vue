@@ -1,10 +1,13 @@
 <template>
   <div id="app" class="control-panel container">
+    <!-- title row -->
     <div class="row">
       <div class="col">
         <h1 class="mt-2 pb-2 mb-2 border-bottom">Weapons Control Panel</h1>
       </div>
     </div>
+
+    <!-- controls -->
     <div class="row">
       <div class="col">
         <Control
@@ -63,6 +66,12 @@
         </div>
       </div>
     </div>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">This site uses Google Analytics cookies - don't use it if you're not happy with that.</span>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -74,6 +83,11 @@ body {
   color: #EEE;
 }
 
+body {
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
 .control-panel {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -83,6 +97,30 @@ body {
 
 .faded {
   opacity: 0.5;
+}
+
+.footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  padding: 0.5em 0;
+  font-size: 0.9em;
+}
+
+/* IE 6 */
+* html #footer {
+  position: absolute;
+  top: expression(
+    (
+        0- (footer.offsetHeight)+
+          (
+            document.documentElement.clientHeight ?
+              document.documentElement.clientHeight: document.body.clientHeight
+          )+ (ignoreMe = document.documentElement.scrollTop ?
+              document.documentElement.scrollTop: document.body.scrollTop)
+      )+"px"
+  );
 }
 </style>
 
